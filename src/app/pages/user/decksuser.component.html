@@ -1,0 +1,27 @@
+<div class="main-box">
+	<h3 class="title">{{"ListDecks" | translate}}<br />
+	<span>de {{user}}</span></h3>
+
+	<table class="table table-striped table-decks">
+		<thead>
+			<tr>
+				<th class="icon"></th>
+				<th class="name">{{ "Name" | translate }}</th>
+				<th>{{ "Type" | translate }}</th>
+				<th>{{ "Arena" | translate }}</th>
+				<th>{{ "Cost" | translate }}</th>							
+				<th>{{ "Likes" | translate }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let deck of decks">
+				<th><img src="/assets/img/clash-royale-shield.png" style="height:40px;width:40px" alt="Clash Royale Shield" /></th>
+				<th>{{deck.name}}</th>
+				<th>{{deck.type}}</th>
+				<th>{{deck.arena}}</th>
+				<th><img src="/assets/img/elixir.png" style="height:16px;width:16px" alt="Clash Royale Elixir" /> {{deck.elixir}}</th>
+				<th><i class="fa fa-heart fa-fw text-gusta"></i>{{deck.likes}}</th>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,53 @@
+<div class="main-box" id="deck-view">
+	<div class="block">
+		<input [(ngModel)]="deck.name"type="text" placeholder="Nombre del Mazo" class="col-md-6" />
+		<div class="col-md-3">
+			<div class="select">
+				<select [(ngModel)]="deck.arena">
+					<option *ngFor="let arena of arenas "[attr.value]="arena.arena">Arena {{arena.arena}}</option>
+				</select>
+				<div class="select__arrow"></div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="select">
+				<select [(ngModel)]="deck.type">
+					<option *ngFor="let type of types "[attr.value]="type.name">{{type.name | translate}}</option>
+				</select>
+				<div class="select__arrow"></div>
+			</div>
+		</div>
+		<textarea [(ngModel)]="deck.description"placeholder="Descripcion del mazo" class="col-md-12 m-b"></textarea>
+	</div>
+	<div class="row m-t m-b">
+		<div class="col-md-5 text-center">
+			<div class="block">
+
+				<a class="active" *ngFor="let card of random; let i = index">
+					<img (click)="removeCard(card, i)"[src]="card.image" alt="Clash Royale {{card.name}}"/>
+					<br *ngIf="i == 3">
+				</a>	
+			</div><br>
+			<h3><img src="assets/img/elixir.png" style="height:32px;width:32px;" alt="Clash Royale Elixir" /> {{deck.elixir/8 | numberElixir }}</h3>
+		</div>
+		<div class="col-md-7 text-md">
+			<div class="select-cards"[hidden]="deck.arena == 0">
+				<div class="search">
+					<input type="text" [(ngModel)]="search"placeholder="Buscar..." />
+				</div>
+				<div class="cards">
+					<a [ngClass]="card.active ? 'active' : ''"*ngFor="let card of originalCards| smaller: deck.arena:search">
+						<img (click)="setCard(card)"[src]="card.image" alt="Clash Royale {{card.name}}" />
+					</a>
+				</div>
+			</div>
+		</div>						
+	</div>
+	<a [hidden]="uploading"class="btn btn-primary btn-lg pull-right"(click)="create()">{{ "Publish" | translate}}</a>
+	<label class="control control--checkbox pull-right" style="margin-top:8px">
+		<input type="checkbox" [(ngModel)]="deck.disable" />
+		<div class="control__indicator"></div>
+		{{ "Private" | translate}}
+	</label>
+</div>
+<simple-notifications [options]="options"></simple-notifications>

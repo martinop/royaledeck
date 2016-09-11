@@ -1,0 +1,88 @@
+<div id="page-content">
+	<div class="container">
+		<nav class="navbar navbar-default navbar-transparent">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img alt="RoyaleDeck" src="assets/img/logo.png" />&nbsp;
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a routerLink="/">{{ "home" | translate}}</a></li>
+						<li class="dropdown"routerLinkActive="active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{"Decks" | translate}}</a>
+							<ul class="dropdown-menu">
+								<li [hidden]="!globals.user"><a routerLink="/builder">{{"Create" |translate}}</a></li>
+								<li><a routerLink="/decks">{{"ListDecks" | translate}}</a></li>
+								<li [hidden]="!globals.user"><a routerLink="/profile">{{ "MyDecks" | translate}}</a></li>
+							</ul>
+						</li>
+						<li routerLinkActive="active"><a routerLink="/random">{{ "randomize" | translate}}</a></li>
+						<li routerLinkActive="active" *ngIf="!globals.user"><a  data-toggle="modal" data-target="#modal-register">{{ "register" | translate}}</a></li>
+						<li><a href="/blog">Blog</a></li>
+						<li [hidden]="!globals.user"><a>{{globals?.user?.name}}</a></li>
+						<li><a (click)="changeLang()"><img src="assets/img/rd-{{fulllang}}.png" alt="RoyaleDeck Language" />&nbsp;</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<router-outlet></router-outlet>
+
+		<footer>
+			<div class="pull-right">
+				<a href=""><i class="fa fa-facebook fa-fw"></i></a>
+				<a href=""><i class="fa fa-twitter fa-fw"></i></a>
+			</div>
+			&copy; Copyright IPStudio 2016.
+			<div class="policy">
+				{{"terms1" | translate}}<br/>
+				{{"terms2" |translate}} <a href="http://www.supercell.com/fan-content-policy">www.supercell.com/fan-content-policy.</a> 
+			</div>
+		</footer>
+	</div>
+</div>
+	<div class="modal fade" id="modal-register" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title">Ingresar</h2>
+
+				</div>
+				<div class="modal-body">
+					<div class="social-login">
+						<p class="social-p">Ingresa con una red social</p>
+
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<button class="btn btn-facebook btn-block btn-social btn-lg"(click)="authenticate('facebook')">
+									<i class="fa fa-facebook fa-2x pull-left"></i>
+									<span>Facebook</span>
+								</button> 
+							</div>
+							<div class="col-md-8 col-md-offset-2">
+								<button class="btn btn-twitter btn-block btn-social btn-lg"(click)="authenticate('twitter')">
+									<i class="fa fa-twitter fa-2x pull-left"></i>
+									<span>Twitter</span>
+								</button> 
+							</div>
+							<div class="col-md-8 col-md-offset-2">
+								<button class="btn btn-google-plus btn-block btn-social btn-lg"(click)="authenticate('google')">
+									<i class="fa fa-google-plus fa-2x pull-left"></i>
+									<span>Google +</span>
+								</button> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,26 @@
+<div class="main-box" id="deck-view">
+	<div class="pull-right">
+		<img src="/assets/img/elixir.png" style="height:32px;width:32px;margin-top:-7px;" alt="Clash Royale Elixir" /> <span>{{deck.elixir}}</span>
+		<i class="fa fa-heart fa-fw fa-2x text-gusta"></i> <span>{{deck.likes}}</span>
+	</div>
+	<h3 class="title"><img src="/assets/img/arenas/arena{{deck.arena}}.png" alt="Clash Royale Arena {{deck.arena}}" />{{deck.name}}<br />
+	<span>Por <a>{{deck.author.username}}</a></span></h3>
+	<div class="row m-t m-b">
+		<div class="col-md-5 text-center">
+			<div class="block">
+				<a class="active"*ngFor="let card of deck.cards; let i = index;">
+					<img [src]="card.image" alt="Clash Royale {{card.name}}"/>
+					<br *ngIf="i == 3">
+				</a>
+			</div>
+		</div>
+		<div class="col-md-7 text-md">
+			<p>{{deck.description}}</p>
+			<button type="submit" name="" value="" class="btn btn-default btn-lg inline"><i class="fa fa-heart-o fa-fw"></i> Me gusta</button>
+			<button type="submit" name="" value="" class="btn btn-danger btn-lg inline"><i class="fa fa-heart fa-fw"></i> Me gusta</button>
+			<button type="submit" name="" value="" class="btn btn-facebook btn-lg inline"><i class="fa fa-facebook fa-fw"></i> Compartir</button>
+			<button type="submit" name="" value="" class="btn btn-twitter btn-lg inline"><i class="fa fa-twitter fa-fw"></i> Tweet</button>
+		</div>
+	</div>
+	<h4>Comentarios</h4>
+</div>

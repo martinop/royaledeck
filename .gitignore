@@ -1,0 +1,4 @@
+node_modules/
+src/assets/img/
+.htaccess
+server/config.js

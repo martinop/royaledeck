@@ -1,0 +1,112 @@
+<div class="main-box">
+	<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+		<li class="active">
+			<a href="#step-1">
+				<h4 class="list-group-item-heading">{{"step" | translate}} 1</h4>
+				<p class="list-group-item-text">{{"step1" | translate}}</p>
+			</a>
+		</li>
+		<li class="disabled">
+			<a href="#step-2">
+				<h4 class="list-group-item-heading">{{"step" | translate}}  2</h4>
+				<p class="list-group-item-text">{{"step2" | translate}}</p>
+			</a>
+		</li>
+		<li class="disabled">
+			<a href="#step-3">
+				<h4 class="list-group-item-heading">{{"step" | translate}}  3</h4>
+				<p class="list-group-item-text">{{"step3" | translate}}</p>
+			</a>
+		</li>
+	</ul>
+	<div class="setup-content" id="step-1">
+		<div class="flex arenas row">
+			<div *ngFor='let arena of arenas' class="col-md-3">
+				<a [ngClass]="arena.active ? 'active' : ''" (click)="changeArena(arena)">
+					<img [src]='arena.image' /> 
+					<span>Arena {{arena.arena}}</span>
+				</a>
+			</div>
+		</div>
+
+		<button id="activate-step-2" class="btn btn-primary btn-lg pull-right">{{ "gostep" | translate}} 2!</button>
+	</div>
+	<div class="setup-content cartas" id="step-2">
+		<div class="block">
+			<div class="opciones m-b">
+				<h5>Opciones</h5>
+				<span *ngFor="let option of options; let i = index">
+					<label class="control control--checkbox">
+						<input (change)="changeOption(option)"type="checkbox" [(ngModel)]="option.active"/>
+						<div class="control__indicator"></div>
+						{{ option.name | translate}}
+
+					</label>
+					<br *ngIf="i == 6 || i == 10">
+				</span>
+			</div>
+
+			<h4>{{ "training" | translate}}</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 0'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>
+
+			<h4>Arena 1</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 1'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>	
+
+			<h4>Arena 2</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 2'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>	
+
+
+			<h4>Arena 3</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 3'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>
+
+			<h4>Arena 4</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 4'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>
+
+			<h4>Arena 5</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 5'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>
+
+			<h4>Arena 6</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 6'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>
+
+			<h4>Arena 7</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 7'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>	
+
+			<h4>Arena 8</h4>
+			<a *ngFor="let card of preCards | filterBy: 'arena = 8'" [ngClass]="card.active ? 'active' : ''" (click)="cardState(card)">
+				<img [src]="card.image" alt="Clash Royale {{card.name}}" />
+			</a>	
+			
+		</div>
+		<button *ngIf="actives > 8"(click)="lastState()"id="activate-step-3" class="btn btn-primary btn-lg pull-right">{{ "gostep" | translate}} 3!</button>
+	</div>
+	<div class="setup-content mazo" id="step-3">
+		<div class="mazo-c">
+			<h4>{{ "elixir" | translate}} {{elixir/random.length | numberElixir}}</h4>
+			<div class="block">
+				<a class="active" *ngFor="let card of random; let i = index">
+					<img [src]="card.image" alt="Clash Royale {{card.name}}"/>
+					<br *ngIf="i == 3">
+				</a>	
+			</div><br>
+	
+			<!--<a class="btn btn-danger btn-lg" href="">Volver a empezar</a>-->
+			<a class="btn btn-primary btn-lg"*ngIf="canRandomize" (click)="initRandomize()">{{ "other" | translate}}</a>
+		</div>
+	</div>				
+</div>

@@ -1,0 +1,31 @@
+<div class="main-box" id="deck-view">
+	<div *ngIf="decks.length > 0">
+		<div class="block m-b">
+			<h2 class="title"> Lista de mazos</h2>
+		</div>
+		<table class="table table-striped table-decks">
+			<thead>
+				<tr>
+					<th class="icon"></th>
+					<th class="name">Nombre</th>
+					<th>Tipo</th>
+					<th>Arena</th>
+					<th>Costo</th>							
+					<th>Me gustas</th>
+					<th>Privado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let deck of decks">
+					<th><img src="/assets/img/clash-royale-shield.png" style="height:40px;width:40px" alt="Clash Royale Shield" /></th>
+					<th><a [routerLink]="['/decks', deck.author?.username, deck.index]">{{deck.name}}</a></th>
+					<th>{{deck.type}}</th>
+					<th>{{deck.arena}}</th>
+					<th><img src="/assets/img/elixir.png" style="height:16px;width:16px" alt="Clash Royale Elixir" /> {{deck.elixir}}</th>
+					<th><i class="fa fa-heart fa-fw text-gusta"></i>{{deck.likes}}</th>
+					<th>{{deck.disable}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<div class="main-box">
+	<h3>{{"ListDecks" | translate}}</h3>
+	<div class="block">
+		<input [(ngModel)]="search" placeholder="Buscar..." class="inline" />
+		<div class="select">
+			<select [(ngModel)]="arena">
+				<option value="null">{{ "Asleep" | translate }}</option>
+				<option value="1">Arena 1</option>
+				<option value="2">Arena 2 </option>
+				<option value="3">Arena 3</option>
+				<option value="4">Arena 4</option>
+				<option value="5">Arena 5</option>
+				<option value="6">Arena 6</option>
+				<option value="7">Arena 7</option>
+				<option value="8">Arena 8</option>
+				<option value="9">Arena 9</option>
+			</select>
+			<div class="select__arrow"></div>
+		</div>
+		<div class="select">
+			<select [(ngModel)]="type">
+				<option value="null">{{ "Asleep" | translate }}</option>
+				<option value="Ofensivo">{{ "Offensive" | translate }}</option>
+				<option value="Defensivo">{{ "Defensive" | translate }}</option>
+				<option value="Control">{{ "Control" | translate }}</option>
+				<option value="Random">{{ "Random" | translate }}</option>
+			</select>
+			<div class="select__arrow"></div>
+		</div>
+		<div class="select">
+			<select [(ngModel)]="elixir">
+				<option value="null">{{ "Asleep" | translate }}</option>
+				<option value="1-2">1-2</option>
+				<option value="2-3">2-3</option>
+				<option value="3-4">3-4</option>
+				<option value="4-5">4-5</option>
+				<option value="5-6">5-6</option>
+				<option value="6-7">6-7</option>
+			</select>
+			<div class="select__arrow"></div>
+		</div>
+		<button (click)="goSearch()" class="btn btn-primary btn-lg inline">{{ "Search" | translate }}</button>
+	</div>
+	<table class="table table-striped table-decks">
+		<thead>
+			<tr>
+				<th class="icon"></th>
+				<th class="name">{{ "Name" | translate }}</th>
+				<th>{{ "User" | translate }}</th>
+				<th>{{ "Type" | translate }}</th>
+				<th>{{ "Arena" | translate }}</th>
+				<th>{{ "Cost" | translate }}</th>							
+				<th>{{ "Likes" | translate }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let deck of decks">
+				<th><img src="/assets/img/clash-royale-shield.png" style="height:40px;width:40px" alt="Clash Royale Shield" /></th>
+				<th><a [routerLink]="['/decks', deck.author.username, deck.index]">{{deck.name}}</a></th>
+				<th>{{deck.author.name}}</th>
+				<th>{{deck.type}}</th>
+				<th>{{deck.arena}}</th>
+				<th><img src="/assets/img/elixir.png" style="height:16px;width:16px" alt="Clash Royale Elixir" /> {{deck.elixir}}</th>
+				<th><i class="fa fa-heart fa-fw text-gusta"></i>{{deck.likes}}</th>
+			</tr>
+		</tbody>
+	</table>
+	<pagination firstText="Primero" lastText="Ultimo"(pageChanged)="pageChanged($event)" [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+    [(ngModel)]="currentPage"></pagination>
+
+</div>
