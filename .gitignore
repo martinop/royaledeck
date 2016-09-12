@@ -1,4 +1,5 @@
 node_modules/
+dist/
 src/assets/img/
 .htaccess
 server/config.js
